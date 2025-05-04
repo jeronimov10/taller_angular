@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>#</th><th>Name</th><th>Channel</th><th>Seasons</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of series">
+            <td>{{s.id}}</td>
+            <td>
+              <a href="#" (click)="selectSerie(s); $event.preventDefault()">
+                {{s.name}}
+              </a>
+            </td>
+            <td>{{s.channel}}</td>
+            <td>{{s.seasons}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="font-weight-bold mt-3">
+        Seasons average: {{avgSeasons}}
+      </p>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="bg-secondary" style="height:200px;"></div>
+        <div class="card-body" *ngIf="selected; else placeholder">
+          <h5 class="card-title">{{selected.name}}</h5>
+          <p class="card-text">{{selected.description}}</p>
+          <p><strong>Channel:</strong> {{selected.channel}}</p>
+          <p><strong>Seasons:</strong> {{selected.seasons}}</p>
+          <a [href]="selected.webpage" target="_blank" class="card-link">
+            More info
+          </a>
+        </div>
+        <ng-template #placeholder>
+          <div class="card-body">
+            <p class="text-muted">
+              Haz clic en una serie para ver detalle.
+            </p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  
